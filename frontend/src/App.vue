@@ -1,4 +1,8 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { Training } from './types/training';
+
+console.log(new Training('abcd'))
+</script>
 
 <template>
   <h1>You did it!</h1>
