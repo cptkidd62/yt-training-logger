@@ -1,15 +1,10 @@
 <script setup lang="ts">
-import { Training } from './types/training';
-
-console.log(new Training('abcd'))
+import TrainingsListView from './views/TrainingsListView.vue';
 </script>
 
 <template>
-  <h1>You did it!</h1>
-  <p>
-    Visit <a href="https://vuejs.org/" target="_blank" rel="noopener">vuejs.org</a> to read the
-    documentation
-  </p>
+  <h1>The app</h1>
+  <TrainingsListView />
 </template>
 
 <style scoped></style>
