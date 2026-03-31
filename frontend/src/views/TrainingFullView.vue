@@ -1,23 +1,32 @@
-<script lang="ts">
-import { defineComponent, type PropType } from 'vue'
+<script setup lang="ts">
+import { trainingRepository } from '@/repositories/repositoryProvider'
+import router from '@/router'
 import type { Training } from '@/types/training'
-export default defineComponent({
-  props: {
-    training: {
-      type: Object as PropType<Training>,
-      required: true,
-    },
-  },
+import { onMounted, ref } from 'vue'
+import { useRoute } from 'vue-router'
+
+const training = ref<Training | undefined>(undefined)
+const loading = ref(true)
+
+const route = useRoute()
+onMounted(async () => {
+  training.value = await trainingRepository.getByID(route.params.id as string)
+  console.log('Training: ' + training.value)
+  if (training.value === undefined) {
+    router.push('/')
+  }
+  loading.value = false
 })
 </script>
 
 <template>
-  <div class="training-full">
-    <h1 class="id">{{ training.title }}</h1>
-    <p>{{ training.id }}</p>
-    <p>{{ training.length }}</p>
-    <p>{{ training.channel }}</p>
-    <p>{{ training.date_created }}</p>
+  <div v-if="loading">Loading...</div>
+  <div v-else class="training-full">
+    <h1>{{ training!.title }}</h1>
+    <p>{{ training!.id }}</p>
+    <p>{{ training!.length }}</p>
+    <p>{{ training!.channel }}</p>
+    <p>{{ training!.date_created }}</p>
   </div>
 </template>
 
@@ -26,9 +35,5 @@ export default defineComponent({
   display: flex;
   flex-flow: column;
   margin-bottom: 1rem;
-}
-
-.name {
-  margin-right: 1rem;
 }
 </style>
