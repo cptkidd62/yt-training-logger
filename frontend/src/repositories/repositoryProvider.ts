@@ -1,4 +1,4 @@
-import { dexieTrainingRepository } from "./dexie/dexieTrainingRepository";
-import type { TrainingRepository } from "./interfaces/trainingRepository";
+import { dexieTrainingRepository } from './dexie/dexieTrainingRepository'
+import type { TrainingRepository } from './interfaces/trainingRepository'
 
-export const trainingRepository: TrainingRepository = dexieTrainingRepository;
+export const trainingRepository: TrainingRepository = dexieTrainingRepository

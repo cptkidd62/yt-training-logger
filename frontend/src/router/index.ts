@@ -14,6 +14,11 @@ const router = createRouter({
       name: 'training',
       component: () => import('../views/TrainingFullView.vue'),
     },
+    {
+      path: '/add-training',
+      name: 'add-training',
+      component: () => import('../views/AddTrainingView.vue'),
+    },
   ],
 })
 

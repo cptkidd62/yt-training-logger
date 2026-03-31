@@ -1,13 +1,13 @@
 <script lang="ts">
 import { defineComponent, type PropType } from 'vue'
-import type { Training } from '@/types/training';
+import type { Training } from '@/types/training'
 export default defineComponent({
   props: {
     training: {
       type: Object as PropType<Training>,
-      required: true
-    }
-  }
+      required: true,
+    },
+  },
 })
 </script>
 
