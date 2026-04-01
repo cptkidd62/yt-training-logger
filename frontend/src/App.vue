@@ -3,8 +3,16 @@ import { RouterView } from 'vue-router'
 </script>
 
 <template>
-  <h1>The app</h1>
+  <div class="navigation-bar">
+    <RouterLink to="/trainings">Trainings</RouterLink>
+    <RouterLink to="/logs">Logs</RouterLink>
+  </div>
   <RouterView />
 </template>
 
-<style scoped></style>
+<style scoped>
+.navigation-bar {
+  display: flexbox;
+  flex-direction: row;
+}
+</style>

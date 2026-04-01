@@ -10,7 +10,12 @@ const router = createRouter({
       component: TrainingsListView,
     },
     {
-      path: '/training/:id',
+      path: '/trainings',
+      name: 'trainings',
+      component: TrainingsListView,
+    },
+    {
+      path: '/trainings/:id',
       name: 'training',
       component: () => import('../views/TrainingFullView.vue'),
     },
@@ -18,6 +23,11 @@ const router = createRouter({
       path: '/add-training',
       name: 'add-training',
       component: () => import('../views/AddTrainingView.vue'),
+    },
+    {
+      path: '/logs/',
+      name: 'logs',
+      component: () => import('../views/LogsListView.vue'),
     },
   ],
 })
