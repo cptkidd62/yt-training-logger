@@ -17,6 +17,13 @@ onMounted(async () => {
   }
   loading.value = false
 })
+
+function deleteTraining() {
+  if (confirm('Do you really want to delete this training?')) {
+    trainingRepository.remove(training.value!.id)
+    router.push('/')
+  }
+}
 </script>
 
 <template>
@@ -27,6 +34,7 @@ onMounted(async () => {
     <p>{{ training!.length }}</p>
     <p>{{ training!.channel }}</p>
     <p>{{ training!.date_created }}</p>
+    <button @click="deleteTraining">Delete training</button>
   </div>
 </template>
 
