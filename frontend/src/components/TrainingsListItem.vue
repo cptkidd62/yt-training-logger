@@ -14,7 +14,7 @@ export default defineComponent({
 <template>
   <div class="training-list-item">
     <RouterLink :to="`/training/${training.id}`"
-      ><h3 class="id">{{ training.id }}</h3></RouterLink
+      ><h3 class="id">{{ training.title }}</h3></RouterLink
     >
   </div>
 </template>
