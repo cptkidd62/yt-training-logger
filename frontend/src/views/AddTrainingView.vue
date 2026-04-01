@@ -36,10 +36,7 @@ function parseDuration(iso: string): number {
 }
 
 const handleCreate = async (payload: { video_id: string }) => {
-  const id = extractVideoId(payload.video_id)
-  if (id === null) {
-    return
-  }
+  const id = payload.video_id
   const training = await getVideoDataFromApi(id)
   if (training === null) {
     return
@@ -47,38 +44,6 @@ const handleCreate = async (payload: { video_id: string }) => {
   const res = await trainingRepository.add(training)
   if (res != '') {
     router.push('/')
-  }
-}
-
-function extractVideoId(input: string): string | null {
-  if (/^[a-zA-Z0-9_-]{11}$/.test(input)) {
-    return input
-  }
-
-  try {
-    const url = new URL(input)
-    const host = url.hostname.replace('www.', '')
-
-    if (host === 'youtu.be') {
-      return url.pathname.split('/')[1] || null
-    }
-
-    if (host === 'youtube.com' || host === 'm.youtube.com') {
-      const v = url.searchParams.get('v')
-      if (v) return v
-
-      if (url.pathname.startsWith('/shorts/')) {
-        return url.pathname.split('/')[2] || null
-      }
-
-      if (url.pathname.startsWith('/embed/')) {
-        return url.pathname.split('/')[2] || null
-      }
-    }
-
-    return null
-  } catch {
-    return null
   }
 }
 </script>
