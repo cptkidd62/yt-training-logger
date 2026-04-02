@@ -1,4 +1,5 @@
 <script lang="ts">
+import { toLocaleFullString } from '@/helpers/DateTools'
 import type { DisplayableLog } from '@/types/traininglog'
 import { defineComponent, type PropType } from 'vue'
 export default defineComponent({
@@ -8,6 +9,11 @@ export default defineComponent({
       required: true,
     },
   },
+  setup() {
+    return {
+      toLocaleFullString,
+    }
+  },
 })
 </script>
 
@@ -16,7 +22,7 @@ export default defineComponent({
     <RouterLink :to="`/trainings/${training.id}`"
       ><h3 class="id">{{ training.trainingTitle }}</h3></RouterLink
     >
-    <p>{{ new Date(training.date).toLocaleDateString() }}</p>
+    <p>{{ toLocaleFullString(training.date) }}</p>
   </div>
 </template>
 

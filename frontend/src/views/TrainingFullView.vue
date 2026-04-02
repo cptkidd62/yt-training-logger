@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { toLocaleDateString } from '@/helpers/DateTools'
 import { logsRepository, trainingRepository } from '@/repositories/repositoryProvider'
 import router from '@/router'
 import type { Training } from '@/types/training'
@@ -43,7 +44,7 @@ async function recordTraining() {
     <p>{{ training!.id }}</p>
     <p>{{ training!.length }}</p>
     <p>{{ training!.channel }}</p>
-    <p>{{ training!.date_created }}</p>
+    <p>{{ toLocaleDateString(training!.date_created) }}</p>
     <button @click="deleteTraining">Delete training</button>
     <button @click="recordTraining">Record training</button>
   </div>
