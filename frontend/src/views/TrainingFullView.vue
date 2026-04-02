@@ -2,7 +2,7 @@
 import { toLocaleDateString } from '@/helpers/DateTools'
 import { logsRepository, trainingRepository } from '@/repositories/repositoryProvider'
 import router from '@/router'
-import type { Training } from '@/types/training'
+import { Training } from '@/types/training'
 import { TrainingLog } from '@/types/traininglog'
 import { onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
@@ -17,6 +17,7 @@ onMounted(async () => {
   if (training.value === undefined) {
     router.push('/')
   }
+  training.value = Training.fromRaw(training.value!)
   loading.value = false
 })
 
@@ -33,18 +34,19 @@ async function recordTraining() {
     alert('Record failed... :(\nPlease, try again')
   } else {
     alert('Record successful! :)')
+    open(training.value!.getURL(), '_blank')
   }
 }
 </script>
 
 <template>
   <div v-if="loading">Loading...</div>
-  <div v-else class="training-full">
-    <h1>{{ training!.title }}</h1>
-    <p>{{ training!.id }}</p>
-    <p>{{ training!.length }}</p>
-    <p>{{ training!.channel }}</p>
-    <p>{{ toLocaleDateString(training!.date_created) }}</p>
+  <div v-else-if="training" class="training-full">
+    <h1>{{ training.title }}</h1>
+    <a :href="`${training.getURL()}`" target="_blank">{{ training.id }}</a>
+    <p>{{ training.length }}</p>
+    <p>{{ training.channel }}</p>
+    <p>{{ toLocaleDateString(training.date_created) }}</p>
     <button @click="deleteTraining">Delete training</button>
     <button @click="recordTraining">Record training</button>
   </div>

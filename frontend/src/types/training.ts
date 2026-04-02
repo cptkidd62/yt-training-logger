@@ -12,4 +12,18 @@ export class Training {
     this.channel = channel
     this.date_created = date_created
   }
+
+  static fromRaw(training: Training): Training {
+    return new Training(
+      training.id,
+      training.title,
+      training.length,
+      training.channel,
+      training.date_created,
+    )
+  }
+
+  getURL(): string {
+    return 'https://www.youtube.com/watch?v=' + this.id
+  }
 }
