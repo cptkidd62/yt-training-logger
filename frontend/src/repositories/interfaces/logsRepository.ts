@@ -1,8 +1,8 @@
-import type { TrainingLog } from '@/types/traininglog'
+import type { DisplayableLog, TrainingLog } from '@/types/traininglog'
 
 export interface LogsRepository {
-  getAll(): Promise<TrainingLog[]>
-  getByID(id: number): Promise<TrainingLog | undefined>
+  getAll(): Promise<DisplayableLog[]>
+  getByID(id: number): Promise<DisplayableLog | undefined>
   add(log: TrainingLog): Promise<number | undefined>
   remove(id: number): Promise<void>
 }

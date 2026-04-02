@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { trainingRepository } from '@/repositories/repositoryProvider'
+import { logsRepository, trainingRepository } from '@/repositories/repositoryProvider'
 import router from '@/router'
 import type { Training } from '@/types/training'
+import { TrainingLog } from '@/types/traininglog'
 import { onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
 
@@ -24,6 +25,15 @@ function deleteTraining() {
     router.push('/')
   }
 }
+
+async function recordTraining() {
+  const res = await logsRepository.add(new TrainingLog(training.value!.id, Date.now(), Date.now()))
+  if (res === undefined) {
+    alert('Record failed... :(\nPlease, try again')
+  } else {
+    alert('Record successful! :)')
+  }
+}
 </script>
 
 <template>
@@ -35,6 +45,7 @@ function deleteTraining() {
     <p>{{ training!.channel }}</p>
     <p>{{ training!.date_created }}</p>
     <button @click="deleteTraining">Delete training</button>
+    <button @click="recordTraining">Record training</button>
   </div>
 </template>
 
