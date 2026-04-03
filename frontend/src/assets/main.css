@@ -1,0 +1,33 @@
+:root {
+  --color-bg: #c9b5ff;
+  --color-text: #361600;
+  --color-primary: #55c55b;
+  --color-secondary: #b84900;
+}
+
+body {
+  margin: 0;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+a:link {
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+a:visited {
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--color-secondary);
+  text-decoration: underline;
+}
+
+a:active {
+  color: var(--color-secondary);
+  text-decoration: underline;
+}

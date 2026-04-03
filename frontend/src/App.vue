@@ -8,12 +8,38 @@ import { RouterView } from 'vue-router'
     <RouterLink to="/logs">Logs</RouterLink>
     <RouterLink to="/settings">Settings</RouterLink>
   </div>
-  <RouterView />
+  <div class="content">
+    <RouterView />
+  </div>
 </template>
 
 <style scoped>
 .navigation-bar {
-  display: flexbox;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex-direction: row;
+  background-color: var(--color-primary);
+  margin: 0;
+  height: 3em
+}
+
+.navigation-bar a {
+  margin: auto;
+  padding: .1em;
+  border: 2px solid var(--color-secondary);
+  font-size: 2em;
+}
+
+.navigation-bar a:hover,
+:active {
+  text-decoration: none;
+  color: var(--color-text);
+  background-color: var(--color-secondary);
+}
+
+.content {
+  margin: 0 auto;
+  padding: 1em 3em;
 }
 </style>
