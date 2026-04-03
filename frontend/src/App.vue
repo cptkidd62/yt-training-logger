@@ -6,6 +6,7 @@ import { RouterView } from 'vue-router'
   <div class="navigation-bar">
     <RouterLink to="/trainings">Trainings</RouterLink>
     <RouterLink to="/logs">Logs</RouterLink>
+    <RouterLink to="/settings">Settings</RouterLink>
   </div>
   <RouterView />
 </template>

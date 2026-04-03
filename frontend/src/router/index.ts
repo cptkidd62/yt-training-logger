@@ -25,9 +25,14 @@ const router = createRouter({
       component: () => import('../views/AddTrainingView.vue'),
     },
     {
-      path: '/logs/',
+      path: '/logs',
       name: 'logs',
       component: () => import('../views/LogsListView.vue'),
+    },
+    {
+      path: '/settings',
+      name: 'settings',
+      component: () => import('../views/SettingsView.vue'),
     },
   ],
 })
