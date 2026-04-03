@@ -1,5 +1,9 @@
 <script setup lang="ts">
-import { dexieExportToJSON } from '@/repositories/dexie/dexieBackups'
+import {
+  dexieExportToJSON,
+  dexieImportFromJSON,
+  dexieParseBackupFile,
+} from '@/repositories/dexie/dexieBackups'
 import { ref } from 'vue'
 
 const fileInput = ref<HTMLInputElement | null>()
@@ -12,7 +16,14 @@ async function exportBackup() {
 }
 async function importBackup() {
   validateField()
-  console.log('Export backup to json file')
+  const backup = await dexieParseBackupFile(file.value!)
+  if (backup === undefined) {
+    alert('Failed to read backup file')
+  } else if (confirm('Are you sure you want to replace your current data with a backup file?')) {
+    dexieImportFromJSON(backup)
+    alert('Import successful!')
+    console.log('Import backup from json file')
+  }
 }
 
 function onFileChanged() {
