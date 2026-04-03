@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { dexieExportToJSON } from '@/repositories/dexie/dexieBackups'
 import { ref } from 'vue'
 
 const fileInput = ref<HTMLInputElement | null>()
@@ -6,6 +7,7 @@ const file = ref<File | null>()
 const error = ref('')
 
 async function exportBackup() {
+  dexieExportToJSON()
   console.log('Export backup to json file')
 }
 async function importBackup() {
