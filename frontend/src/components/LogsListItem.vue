@@ -29,7 +29,7 @@ function deleteLog(log: DisplayableLog) {
 
 <template>
   <div class="logs-list-item">
-    <RouterLink :to="`/trainings/${training.id}`"
+    <RouterLink :to="`/logs/${training.id}`"
       ><h3 class="id">{{ training.trainingTitle }}</h3></RouterLink
     >
     <p>{{ toLocaleFullString(training.date) }}</p>
