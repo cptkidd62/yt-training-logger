@@ -1,13 +1,16 @@
 import { DisplayableLog, type TrainingLog } from '@/types/traininglog'
 import type { LogsRepository } from '../interfaces/logsRepository'
 import { db } from './db'
+import type { Training } from '@/types/training'
 
 export const DexieLogsRepository: LogsRepository = {
   getAll: async function (): Promise<DisplayableLog[]> {
     const logs = await db.logs.toArray()
     const ids = logs.map((log) => log.trainingID)
     const trainings = await db.trainings.bulkGet(ids)
-    const trainingMap = new Map(trainings.map((t) => [t!.id, t]))
+    const trainingMap = new Map(
+      trainings.filter((t): t is Training => t !== undefined).map((t) => [t.id, t]),
+    )
     return logs.map((training) => {
       const tr = trainingMap.get(training.trainingID)
       return DisplayableLog.fromTrainingLog(
