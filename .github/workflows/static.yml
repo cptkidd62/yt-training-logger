@@ -41,7 +41,7 @@ jobs:
         run: npm run build
         working-directory: ./frontend
         env:
-          VITE_API_KEY: ${{ secrets.VITE_API_KEY }}
+          VITE_YT_API_KEY: ${{ secrets.VITE_YT_API_KEY }}
       - name: Setup Pages
         uses: actions/configure-pages@v4
       - name: Upload artifact
