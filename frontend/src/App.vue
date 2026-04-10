@@ -21,12 +21,12 @@ import { RouterView } from 'vue-router'
   flex-direction: row;
   background-color: var(--color-primary);
   margin: 0;
-  height: 3em
+  height: 3em;
 }
 
 .navigation-bar a {
   margin: auto;
-  padding: .1em;
+  padding: 0.1em;
   border: 2px solid var(--color-secondary);
   font-size: 2em;
 }
