@@ -4,10 +4,11 @@
 import type { Training } from './training'
 
 export type TrainingPlan = {
-  id: number
+  id?: number
   title: string
   description: string
   weeks: string[][][]
+  createdAt: number
 }
 
 export type TrainingPlanView = {
@@ -15,4 +16,5 @@ export type TrainingPlanView = {
   title: string
   description: string
   weeks: Training[][][]
+  createdAt: number
 }
