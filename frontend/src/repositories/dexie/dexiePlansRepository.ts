@@ -60,6 +60,6 @@ export const DexiePlansRepository: PlansRepository = {
     db.plans.update(id, plan)
   },
   remove: async function (id: number): Promise<void> {
-    return db.logs.delete(id)
+    return db.plans.delete(id)
   },
 }

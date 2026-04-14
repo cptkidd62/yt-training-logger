@@ -1,5 +1,7 @@
 <script lang="ts">
 import { toLocaleDateString } from '@/helpers/DateTools'
+import { plansRepository } from '@/repositories/repositoryProvider'
+import router from '@/router'
 import type { TrainingPlanView } from '@/types/trainingplan'
 import { defineComponent, type PropType } from 'vue'
 export default defineComponent({
@@ -12,9 +14,17 @@ export default defineComponent({
   setup() {
     return {
       toLocaleDateString,
+      deletePlan,
     }
   },
 })
+
+function deletePlan(plan: TrainingPlanView) {
+  if (confirm('Do you really want to delete this plan?')) {
+    plansRepository.remove(plan.id)
+    router.go(0)
+  }
+}
 </script>
 
 <template>
@@ -26,6 +36,7 @@ export default defineComponent({
         <p>{{ toLocaleDateString(plan.createdAt) }}</p>
       </div>
     </RouterLink>
+    <button @click="deletePlan(plan)">Delete log</button>
   </div>
 </template>
 
@@ -38,5 +49,11 @@ export default defineComponent({
 
 .name {
   margin-right: 1rem;
+}
+
+button {
+  width: 5em;
+  height: 3em;
+  margin: 2em;
 }
 </style>
