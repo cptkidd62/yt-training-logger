@@ -33,7 +33,7 @@ import { RouterView } from 'vue-router'
 }
 
 .navigation-bar a:hover,
-:active {
+.navigation-bar a:active {
   text-decoration: none;
   color: var(--color-text);
   background-color: var(--color-secondary);
