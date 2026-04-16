@@ -7,12 +7,15 @@ So far this project is still in its initial stages so it features only:
 * deleting trainings
 * creating training log (with auto-opening video in new tab)
 * deleting training log
+* creating simple training plans with:
+    * adding and removing weeks
+    * adding trainings from dropdown to specific weekdays (and removing them)
+    * custom plan name
 * export and import backup from JSON file
 
 I plan to further develop this app:
 * UI
 * tag system
-* creating training plans
 * calendar view
 * filtering options
 * etc.
