@@ -48,9 +48,12 @@ function deleteWeek(idx: number) {
 
 function addTraining(weekId: number, dayId: number) {
   const training = trainings.value.find((tr) => tr.id == selectedTrainings.value[weekId]![dayId]!)
-  console.log(training)
   if (training !== undefined) plan.value!.weeks[weekId]![dayId]?.push(training)
-  console.log(plan.value?.weeks)
+  plansRepository.update(plan.value!.id, planViewToRaw(plan.value!))
+}
+
+function removeTraining(weekId: number, dayId: number, n: number) {
+  plan.value!.weeks[weekId]![dayId]!.splice(n, 1)
   plansRepository.update(plan.value!.id, planViewToRaw(plan.value!))
 }
 </script>
@@ -67,6 +70,7 @@ function addTraining(weekId: number, dayId: number) {
         <ul>
           <li v-for="(training, idt) in week[idd]" :key="idt">
             <RouterLink :to="`/trainings/${training.id}`">{{ training.title }}</RouterLink>
+            <button @click="removeTraining(idx, idd, idt)">Remove training</button>
           </li>
         </ul>
         <select v-model="selectedTrainings[idx]![idd]">
