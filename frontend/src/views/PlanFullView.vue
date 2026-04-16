@@ -2,7 +2,7 @@
 import { toLocaleDateString } from '@/helpers/DateTools'
 import { plansRepository } from '@/repositories/repositoryProvider'
 import router from '@/router'
-import type { TrainingPlanView } from '@/types/trainingplan'
+import { planViewToRaw, type TrainingPlanView } from '@/types/trainingplan'
 import { onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
 
@@ -20,6 +20,18 @@ onMounted(async () => {
   }
   loading.value = false
 })
+
+function addWeek() {
+  plan.value!.weeks.push([])
+  plansRepository.update(plan.value!.id, planViewToRaw(plan.value!))
+}
+
+function deleteWeek(idx: number) {
+  if (confirm('Do you really want to delete this week?')) {
+    plan.value!.weeks.splice(idx, 1)
+    plansRepository.update(plan.value!.id, planViewToRaw(plan.value!))
+  }
+}
 </script>
 
 <template>
@@ -27,6 +39,11 @@ onMounted(async () => {
   <div v-else-if="plan" class="plan-full">
     <h1>{{ plan.title }}</h1>
     <p>{{ toLocaleDateString(plan.createdAt) }}</p>
+    <details v-for="(week, idx) in plan.weeks" :key="idx">
+      <summary>Week {{ idx + 1 }}</summary>
+      <button @click="deleteWeek(idx)">Delete week</button>
+    </details>
+    <button @click="addWeek">Add week</button>
   </div>
 </template>
 

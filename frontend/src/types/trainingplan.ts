@@ -18,3 +18,14 @@ export type TrainingPlanView = {
   weeks: Training[][][]
   createdAt: number
 }
+
+export function planViewToRaw(plan: TrainingPlanView): TrainingPlan {
+  const weeks = plan.weeks.map((week) => week.map((day) => day.map((training) => training.id)))
+  return {
+    id: plan.id,
+    title: plan.title,
+    description: plan.description,
+    weeks: weeks,
+    createdAt: plan.createdAt,
+  }
+}
